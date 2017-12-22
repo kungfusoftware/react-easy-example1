@@ -3,14 +3,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Radio,RadioGroup} from 'react-radio-group';
 
 class LocationGroup extends React.Component {
 
-  constructor(Property){
-     super(Property);
-  }
-  getInitialState() {
-    return {selectedValue: 'apple'};
+  constructor(prop){
+     super(prop);
+    this.state = {selectedValue : 'BahLocation'};
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(value) {
@@ -18,22 +18,23 @@ class LocationGroup extends React.Component {
   }
   render() {
     return (
+      <div>
       <RadioGroup
-        name="fruit"
+        name="location"
         selectedValue={this.state.selectedValue}
         onChange={this.handleChange}>
         <label>
-          <Radio value="apple" />Apple
+          <Radio value="BahLocation" />Bah Location
         </label>
         <label>
-          <Radio value="orange" />Orange
-        </label>
-        <label>
-          <Radio value="watermelon" />Watermelon
+          <Radio value="OtherLocation" />Other Location
         </label>
       </RadioGroup>
+        <input type="text" value={this.state.selectedValue}/>
+      </div>
     );
   }
 }
 
 export default LocationGroup;
+
