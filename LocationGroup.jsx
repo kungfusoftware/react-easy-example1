@@ -15,7 +15,7 @@ class LocationGroup extends React.Component {
     this.state = {
       LocationSelected : 'BahLocation', 
       multiple: false,
-      ddlSelectedValue: ''
+      addessSelected: ''
     };
     this.handleLocationSwitch = this.handleLocationSwitch.bind(this);
     this.handleAddressSelected = this.handleAddressSelected.bind(this);
@@ -31,17 +31,19 @@ class LocationGroup extends React.Component {
     event.preventDefault();
     console.log("value=",value);
     if(value.length >0){
-      this.setState({ddlSelectedValue : value[0].name});
+      this.setState({addessSelected : value[0].name});
     }else{
-      this.setState({ddlSelectedValue :""});    
+      this.setState({addessSelected :""});    
     }
   }
  
   render() {
     const {multiple} = this.state;
     var typeAheadDisplay = "inline";
+    var addressDisplay ="none";
     if(this.state.LocationSelected == "OtherLocation")
-      typeAheadDisplay ="none";
+    {  typeAheadDisplay ="none";  addressDisplay ="inline";}
+
     return (
       <div>
       <RadioGroup
@@ -64,7 +66,8 @@ class LocationGroup extends React.Component {
           placeholder="Choose a state..."
           onChange ={this.handleAddressSelected}
         /> </span>
-          <Address address ={this.state.ddlSelectedValue}  />
+          <Address address ={this.state.addessSelected} display={addressDisplay} />
+          Location Information: <input type="text" />
       </div>
     );
   }
