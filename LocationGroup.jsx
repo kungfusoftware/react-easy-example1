@@ -13,16 +13,19 @@ class LocationGroup extends React.Component {
   constructor(prop){
      super(prop);
     this.state = {
-      selectedValue : 'BahLocation', 
+      LocationSelected : 'BahLocation', 
       multiple: false,
       ddlSelectedValue: ''
     };
-    this.handleChange = this.handleLocationSwitch.bind(this);
-    this.handleSelected = this.handleAddressSelected.bind(this);
+    this.handleLocationSwitch = this.handleLocationSwitch.bind(this);
+    this.handleAddressSelected = this.handleAddressSelected.bind(this);
   }
 
   handleLocationSwitch(value) {
-    this.setState({selectedValue: value});
+      event.preventDefault();
+      console.log("Location selected: ",value);
+    this.setState({LocationSelected: value});
+    
   }
   handleAddressSelected(value){
     event.preventDefault();
@@ -36,11 +39,14 @@ class LocationGroup extends React.Component {
  
   render() {
     const {multiple} = this.state;
+    var typeAheadDisplay = "inline";
+    if(this.state.LocationSelected == "OtherLocation")
+      typeAheadDisplay ="none";
     return (
       <div>
       <RadioGroup
         name="location"
-        selectedValue={this.state.selectedValue}
+        selectedValue={this.state.LocationSelected}
         onChange={this.handleLocationSwitch}>
         <label>
           <Radio value="BahLocation" />Bah Location
@@ -50,15 +56,14 @@ class LocationGroup extends React.Component {
         </label>
       </RadioGroup>
        
-         <Typeahead
+      <span style={{display: typeAheadDisplay}} >   <Typeahead
           labelKey="name"
           multiple={multiple}
           options={options}
            minLength={2}
           placeholder="Choose a state..."
           onChange ={this.handleAddressSelected}
-          
-        />
+        /> </span>
           <Address address ={this.state.ddlSelectedValue}  />
       </div>
     );
