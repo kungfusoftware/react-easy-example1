@@ -14,7 +14,7 @@ class Location extends React.Component {
      super(prop);
     this.state = {
       LocationSelected : 'BahLocation', 
-      value: "",
+      officeSelected: "",
       addressSelected: '',
       autocompleteData: []
     };
@@ -31,7 +31,7 @@ class Location extends React.Component {
       event.preventDefault();
       console.log("Location selected: ",value);
 
-    this.setState({LocationSelected: value, addressSelected: ""});
+    this.setState({LocationSelected: value, addressSelected: "", officeSelected:""});
     
   }
       /**
@@ -99,7 +99,7 @@ class Location extends React.Component {
      */
     onChange(e){
         this.setState({
-            value: e.target.value
+            officeSelected: e.target.value
         });
 
         /**
@@ -118,7 +118,7 @@ class Location extends React.Component {
      */
     onSelect(val, item){
         this.setState({
-            value: val, addressSelected : item.FullAddress
+            officeSelected: val, addressSelected : item.FullAddress
         });
 
         console.log("Option from 'database' selected : ", item.FullAddress);
@@ -146,10 +146,6 @@ class Location extends React.Component {
      * @return {String} val
      */
     getItemValue(item){
-        // You can obviously only return the Label or the component you need to show
-        // In this case we are going to show the value and the label that shows in the input
-        // something like "1 - Microsoft"
-       // this.setState({addessSelected :`${item.FullAddress}`, value : `${item.Name}` });
         return `${item.Name}`;
     }
  
@@ -174,12 +170,13 @@ class Location extends React.Component {
         </label>
       </RadioGroup>
        
-      <span style={{display: typeAheadDisplay}} >   
+      <span style={{display: typeAheadDisplay}} >  Office Name: 
                 <Autocomplete
+                   inputProps={{ placeholder: 'search office by name' }}
                     getItemValue={this.getItemValue}
                     items={this.state.autocompleteData}
                     renderItem={this.renderItem}
-                    value={this.state.value}
+                    value={this.state.officeSelected}
                     onChange={this.onChange}
                     onSelect={this.onSelect}
                 />
