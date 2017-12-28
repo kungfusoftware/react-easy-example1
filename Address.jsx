@@ -6,10 +6,13 @@ class Address extends React.Component {
        this.state = { address : props.address , display : props.display };
        this.handleChange = this.handleChange.bind(this);
    }
-    handleChange(value){
-       event.preventDefault(); 
-       this.setState({address: value});
-    }
+   
+   handleChange(e){
+        e.preventDefault(); 
+     console.log("other address inputed: ", e.target.value);
+      this.props.onHandleChange(e.target.value);
+   }
+
   render() {
     
     return (

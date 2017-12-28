@@ -19,6 +19,7 @@ class Location extends React.Component {
       autocompleteData: []
     };
     this.handleLocationSwitch = this.handleLocationSwitch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
    
        this.onChange = this.onChange.bind(this);
         this.onSelect = this.onSelect.bind(this);
@@ -30,10 +31,15 @@ class Location extends React.Component {
   handleLocationSwitch(value) {
       event.preventDefault();
       console.log("Location selected: ",value);
-
     this.setState({LocationSelected: value, addressSelected: "", officeSelected:""});
-    
   }
+
+    handleChange(address){
+    
+       console.log("other address", address);
+        this.setState({addressSelected: address});
+    }
+
       /**
      * Updates the state of the autocomplete data with the remote data obtained via AJAX.
      * 
@@ -149,6 +155,7 @@ class Location extends React.Component {
         return `${item.Name}`;
     }
  
+   
   render() {
     
     var typeAheadDisplay = "inline";
@@ -182,7 +189,7 @@ class Location extends React.Component {
                 />
 
       </span>
-          <Address address ={this.state.addressSelected} display={addressDisplay} />
+          <Address address ={this.state.addressSelected} display={addressDisplay} onHandleChange={this.handleChange} />
           Location Information: <input type="text" />
       </div>
     );
