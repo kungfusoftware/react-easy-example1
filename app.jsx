@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Greeter from './greeter';
-import LocationGroup from './LocationGroup'
+import Location from './Location'
 
 let greeter = (
   <div>
   <Greeter />
-  <LocationGroup />
+  <Location />
   </div>
 )
 
