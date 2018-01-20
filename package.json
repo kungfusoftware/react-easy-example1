@@ -12,12 +12,20 @@
     "gulp": "^3.9.1",
     "gulp-react-easy": "0.0.6",
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.6.2"
   },
   "dependencies": {
     "jquery": "^3.2.1",
+    "location-autocomplete": "^1.2.1",
+    "lodash.debounce": "^4.0.8",
     "react-autocomplete": "^1.7.2",
     "react-bootstrap-typeahead": "^2.0.2",
-    "react-radio-group": "^3.0.2"
+    "react-google-autocomplete": "^1.0.15",
+    "react-google-maps": "^9.4.5",
+    "react-helmet": "^5.2.0",
+    "react-load-script": "0.0.6",
+    "react-places-autocomplete": "^6.0.2",
+    "react-radio-group": "^3.0.2",
+    "react-select": "^1.2.0"
   }
 }

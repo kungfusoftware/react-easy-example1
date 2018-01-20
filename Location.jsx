@@ -13,19 +13,20 @@ class Location extends React.Component {
   constructor(prop){
      super(prop);
     this.state = {
-      LocationSelected : 'BahLocation', 
-      officeSelected: "",
-      addressSelected: '',
+      LocationSelected : this.props.whichLocation, 
+      officeSelected: this.props.office,
+      addressSelected: this.props.address,
       autocompleteData: []
     };
     this.handleLocationSwitch = this.handleLocationSwitch.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleOtherAddressChange = this.handleOtherAddressChange.bind(this);
    
-       this.onChange = this.onChange.bind(this);
-        this.onSelect = this.onSelect.bind(this);
-        this.getItemValue = this.getItemValue.bind(this);
-        this.renderItem = this.renderItem.bind(this);
-        this.retrieveDataAsynchronously = this.retrieveDataAsynchronously.bind(this);
+    //Bah Office Location Drop down
+    this.onChange = this.onChange.bind(this);
+    this.onSelect = this.onSelect.bind(this);
+    this.getItemValue = this.getItemValue.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+    this.retrieveDataAsynchronously = this.retrieveDataAsynchronously.bind(this);
   }
 
   handleLocationSwitch(value) {
@@ -34,8 +35,7 @@ class Location extends React.Component {
     this.setState({LocationSelected: value, addressSelected: "", officeSelected:""});
   }
 
-    handleChange(address){
-    
+    handleOtherAddressChange(address){
        console.log("other address", address);
         this.setState({addressSelected: address});
     }
@@ -112,8 +112,6 @@ class Location extends React.Component {
          * Handle the remote request with the current text !
          */
         this.retrieveDataAsynchronously(e.target.value);
-
-        console.log("The Input Text has changed to ", e.target.value);
     }
 
     /**
@@ -189,7 +187,7 @@ class Location extends React.Component {
                 />
 
       </span>
-          <Address address ={this.state.addressSelected} display={addressDisplay} onHandleChange={this.handleChange} />
+          <Address address ={this.state.addressSelected} display={addressDisplay} onHandleChange={this.handleOtherAddressChange} />
           Location Information: <input type="text" />
       </div>
     );

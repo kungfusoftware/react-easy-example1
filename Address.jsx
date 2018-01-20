@@ -8,8 +8,7 @@ class Address extends React.Component {
    }
    
    handleChange(e){
-        e.preventDefault(); 
-     console.log("other address inputed: ", e.target.value);
+      e.preventDefault(); 
       this.props.onHandleChange(e.target.value);
    }
 
