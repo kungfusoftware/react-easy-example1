@@ -6,7 +6,7 @@ class Demo3 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      address: '8233 greensboro, mclean, va',
+      address: '',
       geocodeResults: null,
       loading: false
     }
@@ -22,7 +22,8 @@ class Demo3 extends React.Component {
     // this will give you access to the entire location object, including
     // the `place_id` and `address_components`
     const place = component.autocomplete.getPlace();
-    console.log("place",place );
+    console.log("geolocation lat:",place.geometry.location.lat());
+     console.log("geolocation long:",place.geometry.location.lng());
     // this will return a reference to the input field
     const inputField = component.input;
    console.log("input",inputField);
@@ -34,9 +35,10 @@ class Demo3 extends React.Component {
       <div>
             <LocationAutocomplete 
             name="venue"
-            initValue={this.state.address}
+            readOnly = {false}
+            value={this.state.address}
             className = "location"
-            placeholder="type to search"
+            placeholder="type to search address"
             googleAPIKey="AIzaSyDYttHNAjUnl9UU9RpoccCP-ESM4DgPwLY"
             onChange={this.handleOnChange}
             onDropdownSelect={this.onDropdownSelect}

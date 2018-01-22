@@ -6,19 +6,9 @@ class LocationAutocomplete extends React.Component {
  constructor(props) {
     super(props)
     this.state = {
-      address: this.props.initValue,
       geocodeResults: null,
       loading: false
-    };
-    onChange: this.handleOnChange.bind(this);
-  }
-
-  handleOnChange(e){
-
-      e.preventDefault(); 
-       console.log("value change: ",e.target.value);
-      this.setState({address: e.target.value});
-      this.props.onChange(e.target.value);
+    }
   }
       
   componentDidMount() {
@@ -102,13 +92,14 @@ class LocationAutocomplete extends React.Component {
         obj[key] = this.props[key];
         return obj;
       }, {});
+      {/* value = {this.props.initValue}            */}
   }
-
+    
   render() {
     return (
       <input
         type='text'
-        value = {this.props.initValue}           
+    
         ref={(input) => { this.input = input; }}
         {...this.filteredInputProps}
       />
@@ -117,7 +108,7 @@ class LocationAutocomplete extends React.Component {
 }
 
 LocationAutocomplete.defaultProps = {
-  placeholder: '' // overrides Google's default placeholder
+  placeholder: 'search address' // overrides Google's default placeholder
 };
 
 LocationAutocomplete.propTypes = {
